@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@nx-demo/api/tasks": ["libs/api/tasks/src/index.ts"],
+      "@nx-demo/frontend/tasks": ["libs/frontend/tasks/src/index.ts"],
+      "@nx-demo/shared/data-model": ["libs/shared/data-model/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
