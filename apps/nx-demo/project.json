@@ -57,7 +57,8 @@
         }
       },
       "options": {
-        "proxyConfig": "apps/nx-demo/proxy.conf.json"
+        "proxyConfig": "apps/nx-demo/proxy.conf.json",
+        "hmr": true
       },
       "defaultConfiguration": "development"
     },

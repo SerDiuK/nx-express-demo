@@ -1,0 +1,3 @@
+<ng-container *ngFor="let event of events$ | async">
+  <nx-demo-event [event]="event" (deleted)="onDelete($event)"></nx-demo-event>
+</ng-container>

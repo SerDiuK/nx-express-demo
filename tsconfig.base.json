@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-demo/api/tasks": ["libs/api/tasks/src/index.ts"],
+      "@nx-demo/api/events-api": ["libs/api/events-api/src/index.ts"],
+      "@nx-demo/api/tasks-api": ["libs/api/tasks-api/src/index.ts"],
+      "@nx-demo/frontend/events": ["libs/frontend/events/src/index.ts"],
       "@nx-demo/frontend/tasks": ["libs/frontend/tasks/src/index.ts"],
       "@nx-demo/shared/data-model": ["libs/shared/data-model/src/index.ts"]
     }

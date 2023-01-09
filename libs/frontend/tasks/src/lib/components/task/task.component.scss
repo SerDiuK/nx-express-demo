@@ -1,0 +1,33 @@
+@import 'bulma';
+
+:host {
+  margin: 0 auto;
+  width: 100%;
+
+  label {
+    padding: $block-spacing;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background: $yellow;
+    }
+
+    input {
+      margin-right: $block-spacing;
+    }
+
+    span {
+      flex: 1;
+    }
+
+    button {
+      color: white;
+
+      &:hover {
+        background: $danger-dark;
+      }
+    }
+  }
+}

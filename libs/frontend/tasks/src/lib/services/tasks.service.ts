@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TasksService {
-  readonly baseUrl = 'api/tasks';
+  readonly baseUrl = 'tasks-api';
 
   constructor(private httpClient: HttpClient) {}
 

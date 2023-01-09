@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { Task } from '@nx-demo/shared/data-model';
 import { Observable } from 'rxjs';
 import { TasksService } from '../../services/tasks.service';
@@ -10,6 +10,8 @@ import { TasksService } from '../../services/tasks.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksComponent {
+  @HostBinding('class') classes = 'container';
+
   tasks$: Observable<Task[]> = this.tasksService.getTasks();
 
   constructor(private tasksService: TasksService) {}
@@ -18,5 +20,11 @@ export class TasksComponent {
     this.tasksService
       .updateTask(task.id, { completed: !task.completed })
       .subscribe();
+  }
+
+  onDelete(id: string): void {
+    this.tasksService.deleteTask(id).subscribe(() => {
+      this.tasks$ = this.tasksService.getTasks();
+    });
   }
 }

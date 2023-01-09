@@ -1,0 +1,62 @@
+{
+  "name": "tasks-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tasks-api/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx run tasks-api:build:watch & nodemon dist/apps/tasks-api/main.cjs"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "tasks-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/tasks-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/tasks-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "apps/tasks-api/src/main.ts",
+        "outputPath": "dist/apps/tasks-api",
+        "outputFileName": "main.js",
+        "tsConfig": "apps/tasks-api/tsconfig.app.json",
+        "project": "apps/tasks-api/package.json",
+        "assets": [],
+        "platform": "node",
+        "format": ["cjs"]
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        },
+        "watch": {
+          "minify": false,
+          "watch": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

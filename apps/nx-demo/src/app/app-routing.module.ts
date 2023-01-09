@@ -7,9 +7,21 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forRoot([
       {
-        path: '',
+        path: 'tasks',
         loadChildren: () =>
           import('@nx-demo/frontend/tasks').then((m) => m.FrontendTasksModule),
+      },
+      {
+        path: 'events',
+        loadChildren: () =>
+          import('@nx-demo/frontend/events').then(
+            (m) => m.FrontendEventsModule
+          ),
+      },
+      {
+        path: '',
+        redirectTo: 'tasks',
+        pathMatch: 'full',
       },
     ]),
   ],

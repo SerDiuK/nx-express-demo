@@ -1,0 +1,13 @@
+<label *ngIf="task" class="checkbox">
+  <input
+    type="checkbox"
+    [ngModel]="task.completed"
+    (ngModelChange)="checked.emit(task)"
+  />
+  <span>{{ task.label }}</span>
+  <button class="button is-danger is-small" (click)="deleted.emit(task.id)">
+    <span class="icon is-small">
+      <span class="material-symbols-outlined">delete</span>
+    </span>
+  </button>
+</label>
