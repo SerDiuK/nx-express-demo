@@ -21,5 +21,6 @@ jobs:
         name: Setup Nx base and head
       - name: Npm install
         run: npm i
-      - run: npx nx affected --target=${{ matrix.target }} --parallel=3
+      - name: Run all Nx affected
+        run: npx nx affected --target=${{ matrix.target }} --parallel=3
 

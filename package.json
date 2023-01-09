@@ -5,6 +5,9 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js",
+    "start:front": "nx run nx-demo:serve",
+    "build:front": "nx run nx-demo:build",
+    "start:api": "nx run-many --target=serve --projects=*-api",
     "coverage": "istanbul-combine -r html coverage/**/coverage-final.json"
   },
   "private": true,
@@ -63,4 +66,3 @@
     "typescript": "~4.8.2"
   }
 }
-
