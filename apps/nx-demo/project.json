@@ -16,8 +16,11 @@
         "tsConfig": "apps/nx-demo/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/nx-demo/src/favicon.ico", "apps/nx-demo/src/assets"],
-        "styles": ["apps/nx-demo/src/styles.scss"],
-        "scripts": []
+        "styles": ["apps/nx-demo/src/styles/styles.scss"],
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/nx-demo/src/styles"]
+        }
       },
       "configurations": {
         "production": {
@@ -84,5 +87,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["scope:frontend"]
 }
