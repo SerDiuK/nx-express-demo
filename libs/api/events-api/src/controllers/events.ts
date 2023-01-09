@@ -1,10 +1,5 @@
 import { Router } from 'express';
-import {
-  getEvents,
-  createEvent,
-  updateEvent,
-  deleteEvent,
-} from '@nx-demo/api/events-api';
+import { getEvents, createEvent, updateEvent, deleteEvent } from '../lib/event';
 
 export const eventsController = (router: Router): void => {
   router.get('/', (req, res): void => {

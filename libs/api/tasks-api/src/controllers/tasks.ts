@@ -1,10 +1,5 @@
 import { Router } from 'express';
-import {
-  getTasks,
-  createTask,
-  updateTask,
-  deleteTask,
-} from '@nx-demo/api/tasks-api';
+import { getTasks, createTask, updateTask, deleteTask } from '../lib/task';
 
 export const tasksController = (router: Router): void => {
   router.get('/', (req, res): void => {
