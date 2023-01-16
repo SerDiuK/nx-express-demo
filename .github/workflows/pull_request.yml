@@ -2,50 +2,15 @@ name: Pull request
 run-name: Pull request 🚀
 on: [pull_request]
 jobs:
-  nx-affected:
-    name: Nx Run all
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        target: [build, test, lint]
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'npm'
-      - uses: nrwl/nx-set-shas@v3
-        name: Setup Nx base and head
-      - name: Npm install
-        run: npm i
-      - name: Run all Nx Run
-        run: npx nx affected --target=${{ matrix.target }} --parallel=3
-
-  # nx-affected-agents:
-  #   name: Nx Affected
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     fail-fast: false
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18
-  #         cache: 'npm'
-  #     - uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.8
-  #       name: Setup Nx cloud main runner
-  #       with:
-  #         number-of-agents: 3
-  #         parallel-commands-on-agents: |
-  #           npx nx affected --target=lint --parallel=3 & npx nx affected --target=test --parallel=3 --ci --code-coverage & npx nx affected --target=build --parallel=3
-
-  # agents:
-  #   name: Nx Cloud - Agents
-  #   uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.8
-  #   with:
-  #     number-of-agents: 3
+  main:
+    name: Nx Cloud - Main Job
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.8
+    with:
+      number-of-agents: 3
+      parallel-commands-on-agents: |
+        npx nx affected --target=lint --parallel=3 & npx nx affected --target=test --parallel=3 --ci --code-coverage & npx nx affected --target=build --parallel=3
+  agents:
+    name: Nx Cloud - Agents
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.8
+    with:
+      number-of-agents: 3
