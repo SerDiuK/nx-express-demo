@@ -4,6 +4,7 @@ import { getTasks, createTask, updateTask, deleteTask } from '../lib/task';
 export const tasksController = (router: Router): void => {
   router.get('/', (req, res): void => {
     const tasks = getTasks();
+    console.log('AFFECTED');
     res.status(200).send(tasks);
   });
 

@@ -2,9 +2,35 @@ name: Pull request
 run-name: Pull request 🚀
 on: [pull_request]
 jobs:
-  nx:
-    name: Nx Run
+  # nx:
+  #   name: Nx Run
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+  #         cache: 'npm'
+  #     - uses: nrwl/nx-set-shas@v3
+  #       name: Setup Nx base and head
+  #     - name: Npm install
+  #       run: npm i
+  #     - name: Lint
+  #       run: npx nx run-many --target=lint --all
+  #     - name: Test
+  #       run: npx nx run-many --target=test --all
+  #     - name: Build
+  #       run: npx nx run-many --target=build --all
+
+  nx-affected:
+    name: Nx Run all
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [build, test, lint]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -17,15 +43,11 @@ jobs:
         name: Setup Nx base and head
       - name: Npm install
         run: npm i
-      - name: Lint
-        run: npx nx run-many --target=lint --all
-      - name: Test
-        run: npx nx run-many --target=test --all
-      - name: Build
-        run: npx nx run-many --target=build --all
+      - name: Run all Nx Run
+        run: npx nx run-many --target=${{ matrix.target }} --all --parallel=3
 
   # nx-affected:
-  #   name: Nx Affected
+  #   name: Nx Run all
   #   runs-on: ubuntu-latest
   #   strategy:
   #     fail-fast: false
@@ -44,7 +66,7 @@ jobs:
   #     - name: Npm install
   #       run: npm i
   #     - name: Run all Nx Run
-  #       run: npx nx run --target=${{ matrix.target }} --parallel=3
+  #       run: npx nx run --target=${{ matrix.target }} --all --parallel=3
 
   # nx-affected-agents:
   #   name: Nx Affected
